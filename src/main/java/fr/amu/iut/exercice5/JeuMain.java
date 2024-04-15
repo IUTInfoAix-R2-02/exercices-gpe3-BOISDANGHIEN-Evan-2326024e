@@ -1,6 +1,7 @@
 package fr.amu.iut.exercice5;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -56,13 +57,32 @@ public class JeuMain extends Application {
                 case RIGHT:
                     j1.deplacerADroite(scene.getWidth());
                     break;
+                case UP:
+                    j1.deplacerEnHaut();
+                    break;
+                case DOWN:
+                    j1.deplacerEnBas(scene.getHeight());
+                    break;
                 case Z:
-                    //j2...... vers le haut;
+                    j2.deplacerEnHaut();
+                    break;
+
+                case D:
+                    j2.deplacerADroite(scene.getWidth());
+                    break;
+
+                case S:
+                    j2.deplacerEnBas(scene.getHeight());
+                    break;
+
+                case Q:
+                    j2.deplacerAGauche();
                     break;
 
             }
-            if (j1.estEnCollision(j2))
-                System.out.println("Collision....");
+            if (j1.estEnCollision(j2)){
+                Platform.exit();
+            }
         });
     }
 

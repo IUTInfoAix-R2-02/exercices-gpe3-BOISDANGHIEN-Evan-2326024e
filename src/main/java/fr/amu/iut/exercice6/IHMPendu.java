@@ -1,14 +1,17 @@
 package fr.amu.iut.exercice6;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -31,6 +34,7 @@ public class IHMPendu extends Application {
     private String motChoisi;
     private GridPane gridPane;
     private Label label_image;
+    private GridPane gridPaneBouton;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,6 +43,7 @@ public class IHMPendu extends Application {
         this.textField = new TextField();
         this.label = new Label(motChoisi);
         this.label_vie = new Label("Nombre de vie : 7");
+        this.gridPaneBouton=new GridPane();
         Dico d1=new Dico();
         String motJeu=d1.getMot();
         ArrayList<Character> listeLettreMot= new ArrayList<>();
@@ -48,10 +53,11 @@ public class IHMPendu extends Application {
         String nouveauMot=initialise_mot_choisi(motJeu);
         this.label_image=new Label();
         this.label=new Label(nouveauMot);
+        gridPaneBouton.setAlignment(Pos.CENTER);
         gridPane.addRow(0,label_vie);
         gridPane.addRow(1,label_image);
         gridPane.setAlignment(Pos.CENTER);
-        borderPane.setBottom(textField);
+        borderPane.setBottom(gridPaneBouton);
         borderPane.setCenter(label);
         borderPane.setTop(gridPane);
         borderPane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(0), Insets.EMPTY)));
@@ -62,44 +68,97 @@ public class IHMPendu extends Application {
             ImageView vie=new ImageView("exercice6/pendu7.png");
             label_image.setGraphic(vie);
         }
-        scene.setOnKeyPressed((KeyEvent event) -> {
-            switch (event.getCode()) {
-                case ENTER:
-                    if(vie==0){
-                        label.setText("Perdu... Dommage !");
-                        break;
-                    }
-                    if(listeLettreEssayeBonneLettre.size()==finalListeLettreMot.size()){
-                        label.setText("Bravo tu as gagné !!");
-                        break;
-                    }
-                    if(textField.getText().length()>1){
-                        System.out.println("Trop long mettez juste une lettre");
-                        break;
-                    }
-                    else{
-                        if(vie==0){
-                            label.setText("Tu as perdu.. Dommage !");
-                        }
-                        if(listeLettreEssayeBonneLettre.size()==finalListeLettreMot.size()){
-                            label.setText("Tu a gagné bravo ! Il te restait ce nombre de vie :"+vie);
-                        }
-                        lettre_selec = textField.getText().charAt(0);
-                        initialiste_liste_essai(listeLettreEssaye, lettre_selec);
-                        System.out.println(listeLettreEssaye);
-                        System.out.println(listeLettreEssayeBonneLettre);
-                        System.out.println(finalListeLettreMot);
-                        Essai_Joueur_analyse(listeLettreEssayeBonneLettre, finalListeLettreMot, lettre_selec);
-                        affichage_changement(finalListeLettreMot, listeLettreEssayeBonneLettre);
-                        break;
-                    }
-            }
-        });
+        Button a=new Button("a");
+        Button b=new Button("b");
+        Button c=new Button("c");
+        Button d=new Button("d");
+        Button e=new Button("e");
+        Button f=new Button("f");
+        Button g=new Button("g");
+        Button h=new Button("h");
+        Button i=new Button("i");
+        Button j=new Button("j");
+        Button k=new Button("k");
+        Button l=new Button("l");
+        Button m=new Button("m");
+        Button n=new Button("n");
+        Button o=new Button("o");
+        Button p=new Button("p");
+        Button q=new Button("q");
+        Button r=new Button("r");
+        Button s=new Button("s");
+        Button t=new Button("t");
+        Button u=new Button("u");
+        Button v=new Button("v");
+        Button w=new Button("w");
+        Button x=new Button("x");
+        Button y=new Button("y");
+        Button z=new Button("z");
+        gridPaneBouton.addRow(0,a,b,c,d,e,f,g);
+        gridPaneBouton.addRow(1,h,i,j,k,l,m,n,o,p,q,r);
+        gridPaneBouton.addRow(2,s,t,u,v,w,x,y,z);
+        a.addEventHandler(MouseEvent.MOUSE_CLICKED, eventA -> Event1(eventA,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        b.addEventHandler(MouseEvent.MOUSE_CLICKED, eventB -> Event1(eventB,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        c.addEventHandler(MouseEvent.MOUSE_CLICKED, eventC -> Event1(eventC,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        d.addEventHandler(MouseEvent.MOUSE_CLICKED, eventD -> Event1(eventD,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        e.addEventHandler(MouseEvent.MOUSE_CLICKED, eventE -> Event1(eventE,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        f.addEventHandler(MouseEvent.MOUSE_CLICKED, eventF -> Event1(eventF,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        g.addEventHandler(MouseEvent.MOUSE_CLICKED, eventG -> Event1(eventG,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        h.addEventHandler(MouseEvent.MOUSE_CLICKED, eventH -> Event1(eventH,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        i.addEventHandler(MouseEvent.MOUSE_CLICKED, eventI -> Event1(eventI,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        j.addEventHandler(MouseEvent.MOUSE_CLICKED, eventJ -> Event1(eventJ,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        k.addEventHandler(MouseEvent.MOUSE_CLICKED, eventK -> Event1(eventK,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        l.addEventHandler(MouseEvent.MOUSE_CLICKED, eventL -> Event1(eventL,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        m.addEventHandler(MouseEvent.MOUSE_CLICKED, eventM -> Event1(eventM,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        n.addEventHandler(MouseEvent.MOUSE_CLICKED, eventN -> Event1(eventN,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        o.addEventHandler(MouseEvent.MOUSE_CLICKED, eventO -> Event1(eventO,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        p.addEventHandler(MouseEvent.MOUSE_CLICKED, eventP -> Event1(eventP,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        q.addEventHandler(MouseEvent.MOUSE_CLICKED, eventQ -> Event1(eventQ,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        r.addEventHandler(MouseEvent.MOUSE_CLICKED, eventR -> Event1(eventR,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        s.addEventHandler(MouseEvent.MOUSE_CLICKED, eventS -> Event1(eventS,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        t.addEventHandler(MouseEvent.MOUSE_CLICKED, eventT -> Event1(eventT,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        u.addEventHandler(MouseEvent.MOUSE_CLICKED, eventU -> Event1(eventU,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        v.addEventHandler(MouseEvent.MOUSE_CLICKED, eventV -> Event1(eventV,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        w.addEventHandler(MouseEvent.MOUSE_CLICKED, eventW -> Event1(eventW,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        x.addEventHandler(MouseEvent.MOUSE_CLICKED, eventX -> Event1(eventX,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        y.addEventHandler(MouseEvent.MOUSE_CLICKED, eventY -> Event1(eventY,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
+        z.addEventHandler(MouseEvent.MOUSE_CLICKED, eventZ -> Event1(eventZ,finalListeLettreMot,listeLettreEssayeBonneLettre,listeLettreEssaye));
         primaryStage.setTitle("Jeu du pendu");
         primaryStage.setWidth(500);
         primaryStage.setHeight(550);
         primaryStage.show();
 
+    }
+
+    public void Event1(Event event,ArrayList<Character> finalListeLettreMot,ArrayList<Character> listeLettreEssayeBonneLettre,ArrayList<Character> listeLettreEssaye){
+        Button source = (Button) event.getSource();
+        String s=source.getText();
+        System.out.println(s);
+        if(vie==0){
+            label.setText("Perdu... Dommage !");
+        }
+        if(listeLettreEssayeBonneLettre.size()==finalListeLettreMot.size()){
+            label.setText("Bravo tu as gagné !!");
+        }
+        if(textField.getText().length()>1){
+            System.out.println("Trop long mettez juste une lettre");
+        }
+        else{
+            if(vie==0){
+                label.setText("Tu as perdu.. Dommage !");
+            }
+            if(listeLettreEssayeBonneLettre.size()==finalListeLettreMot.size()){
+                label.setText("Tu a gagné bravo ! Il te restait ce nombre de vie :"+vie);
+            }
+            char a=s.charAt(0);
+            lettre_selec = a;
+            initialiste_liste_essai(listeLettreEssaye, lettre_selec);
+            System.out.println(listeLettreEssaye);
+            System.out.println(listeLettreEssayeBonneLettre);
+            System.out.println(finalListeLettreMot);
+            Essai_Joueur_analyse(listeLettreEssayeBonneLettre, finalListeLettreMot, lettre_selec);
+            affichage_changement(finalListeLettreMot, listeLettreEssayeBonneLettre);
+        }
     }
 
     public ArrayList<Character> initialise_liste_mot(ArrayList<Character> listeLettreMot, String motJeu) {
@@ -155,10 +214,6 @@ public class IHMPendu extends Application {
         }
         if(vie==0){
             ImageView vie=new ImageView("exercice6/pendu0.png");
-            label_image.setGraphic(vie);
-        }
-        if(listeLettreEssayeBonneLettre.size()==finalListeLettreMot.size()){
-            ImageView vie=new ImageView("exercice6/penduWin.png");
             label_image.setGraphic(vie);
         }
 

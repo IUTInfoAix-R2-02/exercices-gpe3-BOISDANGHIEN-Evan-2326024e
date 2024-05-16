@@ -1,7 +1,11 @@
 package fr.amu.iut.exercice7;
 
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,10 +13,23 @@ public class CounterController implements Initializable {
 
     int counter = 0;
 
+    @FXML
+    Label counterLabel = new Label("0");
+
+    @FXML
+    Button decrement=new Button("decrémenté");
+
+    @FXML
+    Button increment=new Button("increment");
+
     public void increment() {
+        counter++;
+        counterLabel.setText(String.valueOf(counter));
     }
 
     public void decrement() {
+        counter--;
+        counterLabel.setText(String.valueOf(counter));
     }
 
     @Override

@@ -5,18 +5,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" hgap="100" styleClass="root"  vgap="20" fx:controller="fr.amu.iut.exercice8.LoginControl"
-                             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<GridPane alignment="CENTER" hgap="100" styleClass="root" stylesheets="@/exercice8/Login.css" vgap="20" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.exercice8.LoginControl">
     <Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
+
     <Label text="User Id:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+   <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
 <!--   à compléter par un TextField et un Label -->
-
+   <TextField fx:id="txt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <PasswordField fx:id="pwd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 <!--  à compléter pour les boutons -->
 
+
+   <HBox fx:id="hbox" alignment="CENTER" spacing="50" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <Button fx:id="btntxt" onAction="#okClicked" prefHeight="38.0" prefWidth="52.0" text="ok" />
+   <Button fx:id="btnpwd" onAction="#cancelClicked" text="Cancel" />
+   </HBox>
    <columnConstraints>
       <ColumnConstraints maxWidth="103.0" minWidth="63.0" prefWidth="83.0" />
       <ColumnConstraints maxWidth="143.0" minWidth="103.0" prefWidth="123.0" />

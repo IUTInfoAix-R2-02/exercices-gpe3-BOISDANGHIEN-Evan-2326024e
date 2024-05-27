@@ -1,10 +1,15 @@
-package fr.amu.iut.exercice4;
+package fr.amu.iut.exercice14;
 
+import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+
+import java.util.Objects;
 
 @SuppressWarnings("Duplicates")
 public class MainPersonnes {
@@ -17,12 +22,50 @@ public class MainPersonnes {
     private static IntegerBinding calculnbParisiens;
 
     public static void main(String[] args) {
+        lesPersonnes = new SimpleListProperty<>(FXCollections.observableArrayList(personne -> new Observable[] {personne.ageProperty(),personne.villeDeNaissanceProperty()}));
+        ageMoyen = new SimpleIntegerProperty();
+        nbParisiens = new SimpleIntegerProperty();
+        DoubleBinding calculAgeMoyen = new DoubleBinding() {
+            {
+                this.bind(lesPersonnes);
+            }
 
-        lesPersonnes = new SimpleListProperty<>(FXCollections.observableArrayList());
-        ageMoyen = new SimpleIntegerProperty(0);
+            @Override
+            protected double computeValue() {
+                if (lesPersonnes.isEmpty()) {
+                    return 0;
+                }
+                double total = 0;
+                for (Personne p : lesPersonnes) {
+                    total += p.getAge();
+                }
+                return total / lesPersonnes.size();
+            }
+        };
+        ageMoyen.bind(calculAgeMoyen);
 
-        question1();
-//        question2();
+        DoubleBinding calculnbParisiens = new DoubleBinding() {
+            {
+                this.bind(lesPersonnes);
+            }
+            @Override
+            protected double computeValue() {
+                if (lesPersonnes.isEmpty()) {
+                    return 0;
+                }
+                double total = 0;
+                for (Personne p : lesPersonnes) {
+                    if (Objects.equals(p.getvilleDeNaissance(), "Paris")){
+                        total += 1;
+                    }
+                    System.out.println(total);
+                }
+                return total;
+            }
+        };
+        nbParisiens.bind(calculnbParisiens);
+       question1();
+       question2();
     }
 
     public static void question1() {
